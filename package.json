@@ -1,0 +1,53 @@
+{
+  "name": "UniSystem51",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "git": "^0.1.5",
+    "html-to-react": "^1.3.3",
+    "npm": "^6.1.0",
+    "react": "16.0.0-alpha.6",
+    "react-native": "0.44.0",
+    "react-native-chatbot": "0.0.1-alpha.9",
+    "react-native-dimension": "^1.0.6",
+    "react-native-display-html": "^1.2.5",
+    "react-native-drop-refresh": "^2.2.0",
+    "react-native-fence-html": "^1.0.6",
+    "react-native-gifted-listview": "0.0.15",
+    "react-native-html-render": "^1.0.5",
+    "react-native-htmlview": "^0.12.1",
+    "react-native-immutable-list-view": "^0.7.3",
+    "react-native-refreshable-listview": "^2.0.0-beta4",
+    "react-native-refresher": "^0.1.1",
+    "react-native-render-html": "^3.8.1",
+    "react-native-responsive-dimensions": "^1.0.2",
+    "react-native-responsive-image": "^2.2.1",
+    "react-native-router-flux": "^4.0.0-beta.28",
+    "react-native-sglistview": "^0.4.5",
+    "react-native-sidebar": "^0.3.0",
+    "react-native-tab-view": "0.0.74",
+    "react-native-ultimate-listview": "^3.3.0",
+    "react-native-webview-bridge": "^0.33.0",
+    "react-redux": "^5.0.6",
+    "recyclerlistview": "^1.2.6",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "styled-components": "^3.2.3"
+  },
+  "devDependencies": {
+    "babel-jest": "22.2.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-react-native": "4.0.0",
+    "jest": "22.3.0",
+    "react-test-renderer": "16.0.0-alpha.6"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
