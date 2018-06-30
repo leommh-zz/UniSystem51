@@ -1,29 +1,26 @@
 //Importações Globais
 import React, {Component} from 'react';
-import { Text, ActivityIndicator } from 'react-native';
-import { connect } from 'react-redux';
 
 //Importações Personalizadas
-import ListaTagPostagens from './ListaTagPostagens';
+import ListaPosts from './ListaPosts';
 
-class TagDetalhes extends Component{
-
-	constructor(props){
-		super(props);
-		
-		//Estado criado para facilitar
-		this.state = { posts: this.props.term };
-	}
-
+export default class TagDetalhes extends Component{
 	render(){
-		//Cria a Lista de Postagens passando os posts personalizados de acordo com a Tag escolhida anteriormente
-		return(
-			<ListaTagPostagens tagPostagens={ this.state.posts }  />
-		);
+		if(this.props.term){
+			if (this.props.term !== undefined){
+				//Cria a Lista de Postagens passando os posts personalizados de acordo com a Tag escolhida anteriormente
+				return(
+					<ListaPosts data={ this.props.term }  />
+				);
+			}else{
+				return(
+					console.log('[TagDetalhes] -> Parâmetros Indefinidos = Erro!')
+				);	
+			}
+		}else{
+			console.log('[TagDetalhes] -> Parâmetros não Existem');
+		}
 	}
 }
 	
-mapStateToProps = state => { return({}) }
-
-export default connect(mapStateToProps, { })(TagDetalhes);
 
