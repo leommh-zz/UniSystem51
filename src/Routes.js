@@ -11,7 +11,7 @@ import TagDetalhes from './components/TagDetalhes';
 export default props => {
 
 	return(
-		<Router navigationBarStyle={ styles.navBar } titleStyle={ styles.navTitle } navBarButtonColor='#631a3b' sceneStyle={styles.routerScene} >
+		<Router navigationBarStyle={ styles.navBar } titleStyle={ styles.navTitle } navBarButtonColor='#ff856c' sceneStyle={styles.routerScene} >
 			<Scene key='root'>
 		        <Scene key='inicio' component={ Inicio } hideNavBar={ true } initial />
 		        <Scene key='postagemDetalhes' component={ PostagemDetalhes } title='Detalhes' hideNavBar={ false } />
@@ -23,16 +23,16 @@ export default props => {
 
 const styles = StyleSheet.create({
 	navBar: {
-		backgroundColor: '#fff',
+		backgroundColor: '#191e25',
 		elevation: 3
   	},
 	navTitle: {
-		color: '#631a3b', //Alterar navbar title color
+		color: '#ff856c', //Alterar navbar title color
 		textAlign: 'center', 
 		fontFamily: 'Montserrat',
 		fontSize: 18 
   	},
 	routerScene: {
-		backgroundColor: '#ffebe8'
+		backgroundColor: '#fff'
 	}
 });

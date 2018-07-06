@@ -14,9 +14,8 @@ class Postagens extends Component {
     let imagem = this.props.postagens.media$thumbnail.url.replace("s72", "s400");
     //Cria o design de cada postagem do ListView individualmente
     return (
-      <TouchableHighlight onPress={ () => {
-        this.props.postagemSelecionada(this.props.postagens);
-        Actions.postagemDetalhes({ title: this.props.postagens.title.$t }); }
+      <TouchableHighlight onPress={
+        () => {  this.props.postagemSelecionada(this.props.postagens), Actions.postagemDetalhes({ title: this.props.postagens.title.$t }) }
       } underlayColor='rgba(190, 42, 68, 0.1)' style={{margin: 4, flex: 1}}>
 
         <View style={ styles.painelPrincipal }>
@@ -71,13 +70,13 @@ const styles = StyleSheet.create({
     fontSize: 19, 
     textAlign: 'center', 
     fontFamily: 'Montserrat', 
-    color: '#631a3b'
+    color: '#ff856c'
   },
   txtPostagem:{
     fontSize: 12, 
     textAlign: 'center', 
     fontFamily: 'Montserrat', 
-    color: '#631a3b'
+    color: '#ff6c6a'
   },
   viewTxtPostagem: {
     marginTop: 6 

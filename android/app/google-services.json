@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "788698662155",
+    "firebase_url": "https://unisystem51-c42a7.firebaseio.com",
+    "project_id": "unisystem51-c42a7",
+    "storage_bucket": "unisystem51-c42a7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:788698662155:android:bbb6541bc1bd06bb",
+        "android_client_info": {
+          "package_name": "com.unisystem51"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "788698662155-hrb0tc0v57sgb5sc50sk16tde1u4u462.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.unisystem51",
+            "certificate_hash": "4b406b944fda09611710925a7ff1b1f7222ec01d"
+          }
+        },
+        {
+          "client_id": "788698662155-4m9qhte6sti4eg0qh2ef2hn3velmc71b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8s-wNnnlEjZ7o9mZ4O-mGNKgrC0BgkHs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "788698662155-dis557jn648qbjtofvib68e26av653df.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

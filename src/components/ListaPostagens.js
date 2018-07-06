@@ -31,7 +31,7 @@ class ListaPostagens extends Component {
       );
     }else{
       return(
-        <ActivityIndicator size="large" color="#f04963" />  
+        <ActivityIndicator size="large" color="#ff6c6a" />  
       );
     }
   }

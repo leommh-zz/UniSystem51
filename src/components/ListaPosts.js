@@ -88,7 +88,7 @@ export default class ListaPosts extends Component {
               if (this.state.isLoading == true){
                 return(
                   <View style={{ flex: 1 }}>
-                    <ActivityIndicator size="small" hidesWhenStopped={true} />
+                    <ActivityIndicator size="small" hidesWhenStopped={true} color="#ff6c6a" />
                   </View>
                 );
               }
@@ -106,7 +106,7 @@ export default class ListaPosts extends Component {
     }
 
     return(
-      <ActivityIndicator size="large" color="#f04963"/>
+      <ActivityIndicator size="large" color="#ff6c6a"/>
     );
   }
 

@@ -43,7 +43,7 @@ const Styles = StyleSheet.create({
     padding: 4
   },
   tituloTag: {
-    fontSize: 20, textAlign: 'center', fontFamily: 'Montserrat', color: '#631a3b',
+    fontSize: 20, textAlign: 'center', fontFamily: 'Montserrat', color: '#ff6c6a',
     margin: 8
   }
 });
