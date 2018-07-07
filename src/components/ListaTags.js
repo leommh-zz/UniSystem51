@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { tagsCatch } from '../actions/PostagemActions';
 import Tag from './Tag';
 
+
 class ListaTags extends Component {
   
   constructor(props){

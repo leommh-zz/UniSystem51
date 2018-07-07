@@ -1,7 +1,7 @@
 //Importações Globais
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { TabViewAnimated, SceneMap } from 'react-native-tab-view';
+import { StyleSheet } from 'react-native';
+import { TabViewAnimated } from 'react-native-tab-view';
 
 //Importações Personalizadas
 import TabBarDetalhes from './TabBarDetalhes';
@@ -28,11 +28,18 @@ export default class Principal extends Component {
   _renderHeader = props => <TabBarDetalhes {...props} />;
 
   //Variável que recebe as telas que serão utilizadas no TabBar
-  _renderScene = SceneMap({
-    'Publicacoes': ListaPostagens,
-    'Lord': LordBot,
-    'Tags': ListaTags
-  });
+ _renderScene = ({ route }) => {
+    switch (route.key) {
+    case 'Publicacoes':
+      return <ListaPostagens />;
+    case 'Tags':
+      return <ListaTags />;
+    case 'Lord':
+      return <LordBot />;
+    default:
+      return null;
+    }
+  }
 
   render() {
     return (

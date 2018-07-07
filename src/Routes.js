@@ -23,7 +23,7 @@ export default props => {
 
 const styles = StyleSheet.create({
 	navBar: {
-		backgroundColor: '#191e25',
+		backgroundColor: '#8c003f',
 		elevation: 3
   	},
 	navTitle: {

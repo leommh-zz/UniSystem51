@@ -47,8 +47,8 @@ export default class Inicio extends Component {
     
       return (
         <View style={{ flex: 1, backgroundColor: '#fff' }}>
-          <StatusBar backgroundColor="#191e25" />
-          <View style={{backgroundColor: '#20262f' }}>
+          <StatusBar backgroundColor="#7c0037" />
+          <View style={{backgroundColor: '#8c003f' }}>
             <Animated.Text style={  animatedStyle }>Uni System 51</Animated.Text>
           </View>
           <TabBarMenu />

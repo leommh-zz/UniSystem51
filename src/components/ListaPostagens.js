@@ -5,44 +5,14 @@ import { connect } from 'react-redux';
 
 //Importações Personalizadas
 import ListaPosts from './ListaPosts';
-import { postsCatch } from '../actions/PostagemActions';
 
-class ListaPostagens extends Component {
-
-  constructor(props){
-    super(props);
-    this.state = { conteudo: null };
-  }
-
-  componentWillMount(){
-    this.props.postsCatch();
-  }
-
-  componentWillReceiveProps(nextProps){
-    if (nextProps.conteudo !== undefined){
-      this.setState({ conteudo: nextProps.conteudo });
-    }
-  }
+export default class ListaPostagens extends Component {
 
   render(){
-    if(this.state.conteudo !== null){
       return(
-        <ListaPosts data={this.state.conteudo} />
+        <ListaPosts type='POSTS' />
       );
-    }else{
-      return(
-        <ActivityIndicator size="large" color="#ff6c6a" />  
-      );
-    }
   }
   
 }
 
-mapStateToProps = state => {
-    //Variável contendo os posts
-    return({
-      conteudo: state.PostagemReducer.conteudo
-    });
-}
-
-export default connect(mapStateToProps, { postsCatch })(ListaPostagens);

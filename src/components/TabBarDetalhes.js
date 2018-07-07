@@ -31,7 +31,7 @@ const TabBarDetalhes = props => {
       height: 3
     },
     tab: {
-      backgroundColor: '#20262f'
+      backgroundColor: '#8c003f'
       
   
     }

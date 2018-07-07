@@ -1,10 +1,23 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
+import { ThemeProvider } from 'styled-components';
 import ChatBot from 'react-native-chatbot';
 
+//Importações Personalizadas
+import Pesquisar from './Pesquisar';
+
 export default class lordBot extends Component {
-  
-render() {
+  constructor(props){
+    super(props);
+    this.state = { key: 1 };
+  }
+
+
+  render() {
+
+    let res = () => {
+      this.setState({ key: Math.random() });
+    }
 
     const steps = [
         {
@@ -32,26 +45,56 @@ render() {
               trigger: 'pesquisar_módulo_1',
           },
           {
-            //{previousValue}
               id: 'pesquisar_módulo_1',
-              component: (
-                <Text> Teste </Text>
-              ),
-              end: true,
+              component: <Pesquisar descobrir={this.props} />,
+              trigger: 'mensagem_pospesquisar'
+          },
+          {
+            id: 'mensagem_pospesquisar',
+            options: [
+              { value: 1, label: 'Quero mais ajuda!', trigger: 'help' },
+            ],
+          },
+          {
+            id: 'help',
+            message: 'OK!',
+            end: true
           },
         
           /*Parte de Conversa (Opicional)*/
           {
             id: 'conversar_1',
             message: 'Desde muito tempo atrás as pessoas vêem ao meu encontro em busca de conhecimento, mesmo eu dizendo não saber nada, enquanto ao mesmo tempo sei sobre tudo, estes mortais não param de me aborrecer...',
-            end: true,
+            trigger: 'mensagem_inicio_2'
           },
+          {            
+            id: 'mensagem_inicio_2',
+            message: 'O que mais você quer?',
+            trigger: 'pergunta_1',
+          },
+          
       ];
 
     return (
-      <View style={{padding: 5}}>
-        <ChatBot steps={steps} />
+      
+      <View key={this.state.key} style={{ backgroundColor: '#1d000e' }}>
+          <ChatBot 
+            steps={steps} 
+            botAvatar='https://i.imgur.com/j9bdSdt.png'
+            userAvatar='https://i.imgur.com/D6AOXkF.png'
+            botFontColor={ '#fff' } 
+            userFontColor={ '#ea4761' }
+            botBubbleColor={ '#ea4761' } 
+            style={{ backgroundColor: '#1d000e', marginTop: 2 }}
+            contentStyle={{ backgroundColor: '#1d000e' }}
+            footerStyle={{ backgroundColor: '#fff', margin: 5, padding: 1, borderRadius: 7, elevation: 2, }}
+            submitButtonStyle={{ backgroundColor: '#1d000e', borderRadius: 4, width: 63, margin: 2 }}
+            handleEnd={res}
+          />
+ 
       </View>
     );
   }
 }
+
+
