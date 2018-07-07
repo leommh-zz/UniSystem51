@@ -5,12 +5,13 @@ import React, {Component} from 'react';
 import ListaPosts from './ListaPosts';
 
 export default class TagDetalhes extends Component{
+
 	render(){
-		if(this.props.term){
-			if (this.props.term !== undefined){
+		if(this.props.tag){
+			if (this.props.tag !== undefined){
 				//Cria a Lista de Postagens passando os posts personalizados de acordo com a Tag escolhida anteriormente
 				return(
-					<ListaPosts data={ this.props.term }  />
+					<ListaPosts tag={ this.props.tag } type='POSTS_TAG'  />
 				);
 			}else{
 				return(

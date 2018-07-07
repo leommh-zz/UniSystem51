@@ -2,13 +2,48 @@
 import axios from 'axios';
 
 //Importações Personalizadas
-import { POSTAGEM_ATUAL, POSTAGENS, TAGS, ERROR404 } from './types';
+import { POSTAGEM_ATUAL, POSTAGENS, POSTS_SEARCH, POSTS_TAG, TAGS, ERROR404 } from './types';
 
 export const postagemSelecionada = (data) => {
 	return ({
 		type: POSTAGEM_ATUAL,
 		payload: data
 	})
+}
+
+export const postsSearchCatch = (text) => {
+
+		return dispatch => {
+		//Recebe as Tags do Blog
+			axios.get(`http://unisystem51.blogspot.com/feeds/posts/default/?alt=json&start-index=1&max-results=99999&q=${text}`)
+	      	.then((response) => {
+				dispatch({
+					type: POSTS_SEARCH,
+					payload: response.data.feed.entry
+				})
+	      	})
+	      	.catch((erro) => {
+				console.log(erro);
+	      	});
+		}
+
+}
+
+export const postsTagCatch = (tag) => {
+	return dispatch => {
+		//Recebe as Tags do Blog
+		axios.get(`http://unisystem51.blogspot.com/feeds/posts/default/-/${tag}?alt=json`)
+	      .then((response) => {
+			  console.log(response);
+			dispatch({
+				type: POSTS_TAG,
+				payload: response.data.feed.entry
+			})
+	      })
+	      .catch((erro) => {
+			console.log(erro);
+	      });
+	}
 }
 
 export const tagsCatch = () => {
@@ -21,11 +56,8 @@ export const tagsCatch = () => {
 				payload: response.data.feed.category
 			})
 	      })
-	      .catch(() => {
-			dispatch({
-				type: ERROR404,
-				payload: true
-			}); 
+	      .catch((erro) => {
+			console.log(erro);
 	      });
 	}
 }
@@ -40,11 +72,8 @@ export const postsCatch = () => {
 				payload: response.data.feed.entry
 			});
 	      })
-	      .catch(() => {
-	      	dispatch({
-				type: ERROR404,
-				payload: true
-			}); 
+	      .catch((erro) => {
+			console.log(erro);
 	      });
 	}
 }

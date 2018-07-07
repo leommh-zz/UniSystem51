@@ -58,9 +58,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 0,  
        
   },
-  imagemViewPost:{
-
-  },
   viewConteudo:{
     flex: 1,
     padding: 2,

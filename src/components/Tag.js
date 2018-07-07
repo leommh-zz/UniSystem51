@@ -1,24 +1,29 @@
 //Importações Globais
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
+import { View, Text, StyleSheet, TouchableHighlight, ActivityIndicator } from 'react-native';
+import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import axios from 'axios';
+
+//Importações Personalizadas
+import { postsTagCatch } from '../actions/PostagemActions';
 
 export default class Tag extends Component {
+
+  componentWillMount(){
+    this.tag = this.props.tag.term; 
+  }
+
+
   render() {
     return (
       <TouchableHighlight 
         onPress={ () => {
-          //Recebe o JSON do blogger contendo o conteúdo personalizado de acordo com a tag selecionada
-          axios.get(`http://unisystem51.blogspot.com/feeds/posts/default/-/${this.props.tag.term}?alt=json`)
-            .then((response) => { 
-              Actions.tagDetalhes({
-                 title: this.props.tag.term, 'term': response.data.feed.entry 
-              }) 
-            })
-            .catch(() => { 
-              console.log('Erro ao Recuperar Dados!') 
-            });
+            //Recebe o JSON do blogger contendo o conteúdo personalizado de acordo com a tag selecionada
+    
+            Actions.tagDetalhes({
+              title: this.tag, 'tag': this.tag
+            }) 
+                
 		      }
       	} underlayColor='rgba(190, 42, 68, 0.1)' style={{ margin: 4 }}>
 
@@ -47,3 +52,4 @@ const Styles = StyleSheet.create({
     margin: 8
   }
 });
+
