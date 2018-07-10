@@ -1,20 +1,13 @@
 //Importações Globais
-import React, { Component } from 'react';
+import React from 'react';
 
 //Importações Personalizadas
 import ListaPosts from './ListaPosts';
 
-export default class Pesquisar extends Component {
-
-  componentWillMount(){
-    this.text = this.props.previousStep.message;
-  }
-
-  render(){
-      return(
-          <ListaPosts type='SEARCH' search={this.text} />
-      );
-  }
-  
+export default Pesquisar = props => {
+  this.text = props.previousStep.message;
+  return(
+    <ListaPosts type='SEARCH' search={this.text} />
+  );
 }
 

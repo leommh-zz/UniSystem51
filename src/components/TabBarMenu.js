@@ -58,5 +58,5 @@ export default class Principal extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1
-  },
+  }
 });

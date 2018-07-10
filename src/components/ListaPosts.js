@@ -11,54 +11,54 @@ class ListaPosts extends Component {
   
   constructor(props){
     super(props);
-    this.state = { dataSource: null, tamanhoDados: null, refreshing: false, isLoading: false, data: null, emptyData: false };
+    this.state = { dataSource: null, tamanhoDados: null, refreshing: false, isLoading: false, data: null, isEmpty: false };
   }
 
   componentWillMount(){
-    
-    if (this.props.type == 'POSTS_TAG'){
-      this.props.postsTagCatch(this.props.tag);
-    }else if (this.props.type == 'POSTS'){
-      this.props.postsCatch();
-    }else if (this.props.type == 'SEARCH'){
-      console.log(this.props.search);
-      if (this.props.search !== undefined){
+
+    switch(this.props.type) {
+    	case 'POSTS':
+        this.props.postsCatch();
+        break;
+      case 'POSTS_TAG':
+        this.props.postsTagCatch(this.props.tag);
+        break;
+      case 'SEARCH': 
         this.props.postsSearchCatch(this.props.search);
-      }else{
-        console.log('Texto de Pesquisa é Indefinido!');
-      }
+        break;
     }
+
   }
 
   componentWillReceiveProps(nextProps){
-    if (this.props.type == 'POSTS_TAG'){
-      if (nextProps.postsTag !== undefined){
-        this.criaFonteDeDados(nextProps.postsTag);
-      }
-    }else if (this.props.type == 'POSTS'){
-      if (nextProps.posts !== undefined){
-        this.criaFonteDeDados(nextProps.posts);
-      }
-    }else if (this.props.type == 'SEARCH'){
-      if (nextProps.postsSearch !== undefined){
-        this.criaFonteDeDados(nextProps.postsSearch);
-      }else{
-        this.state.emptyData = true;
-      }
+
+    switch(this.props.type) {
+      case 'POSTS':
+       this.criaFonteDeDados(nextProps.posts) 
+        break;
+      case 'POSTS_TAG':
+        this.criaFonteDeDados(nextProps.postsTag)
+        break;
+      case 'SEARCH': 
+        this.criaFonteDeDados(nextProps.postsSearch)
+        break;
     }
+
   }
 
   criaFonteDeDados(posts){
-    if (posts !== undefined){
+    if (posts !== undefined && posts !== null){
       
       posts.slice(0, 12);
-      
       
       //Cria o DataSource para o ListView
       const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
       this.setState({ dataSource: ds.cloneWithRows(posts) });
-      this.setState({ tamanhoDados: posts.length, refreshing: false, isLoading: false, data: posts });
+      this.setState({ tamanhoDados: posts.length, refreshing: false, isLoading: false, data: posts, isEmpty: true });
+    }else{
+      this.setState({ isEmpty: true });
     }
+
   }
 
   renderRow(posts){
@@ -71,13 +71,19 @@ class ListaPosts extends Component {
 
   _onRefresh(){
     this.setState({ refreshing: true, fim: false });
-    if (this.props.type == 'POSTS_TAG'){
-      this.props.postsTagCatch(this.props.tag);
-    }else if (this.props.type == 'POSTS'){
-      this.props.postsCatch();
-    }else if (this.props.type == 'SEARCH'){
-      this.props.postsSearchCatch(this.props.search);
+
+    switch(this.props.type) {
+    	case 'POSTS':
+        this.props.postsCatch();
+        break;
+      case 'POSTS_TAG':
+        this.props.postsTagCatch(this.props.tag);
+        break;
+      case 'SEARCH': 
+        this.props.postsSearchCatch(this.props.search);
+        break;
     }
+
   }
 
   loadMore(){
@@ -136,24 +142,17 @@ class ListaPosts extends Component {
                     </Text>
                   </View>
                 );
-              }
-              return false;
+              }else{ return false }
             }}
         />
       );
-    }
-
-    if (this.state.emptyData == false){
-      return(
-        <ActivityIndicator size="large" color="#ff6c6a"/>
-      );
+    } else if (this.state.isEmpty == true && this.props.type == 'SEARCH'){
+      return <Text>Nenhum Post Encontrado!</Text>
     }else{
-      return(
-        <Text>Nenhum Post Encontrado!</Text>
-      );
+      return <ActivityIndicator size="large" color="#ff6c6a" />
     }
   }
-
+  
 }
 
 const styles = StyleSheet.create({
@@ -174,15 +173,16 @@ const styles = StyleSheet.create({
 });
 
 
-mapStateToProps = state => {
+mapStateToProps = state => ({
+  posts: state.PostagemReducer.conteudo,
+  postsTag: state.PostagemReducer.postsTag,
+  postsSearch: state.PostagemReducer.postsSearch
+});
 
-    return({
-      posts: state.PostagemReducer.conteudo,
-      postsTag: state.PostagemReducer.postsTag,
-      postsSearch: state.PostagemReducer.postsSearch
-    });
-
-
+mapDispatch = {
+  postsTagCatch, 
+  postsCatch, 
+  postsSearchCatch
 }
 
-export default connect(mapStateToProps, { postsTagCatch, postsCatch, postsSearchCatch })(ListaPosts);
+export default connect(mapStateToProps, mapDispatch)(ListaPosts);

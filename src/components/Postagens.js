@@ -1,9 +1,9 @@
 //Importações Globais
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, TouchableHighlight, Dimensions, PixelRatio } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableHighlight } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { Avatar, Divider } from 'react-native-material-design';
+import { Divider } from 'react-native-material-design';
 
 //Importações Personalizadas
 import { postagemSelecionada } from '../actions/PostagemActions';
@@ -11,12 +11,19 @@ import { postagemSelecionada } from '../actions/PostagemActions';
 class Postagens extends Component {
   
   render() {
+    
     let imagem = this.props.postagens.media$thumbnail.url.replace("s72", "s400");
+    
     //Cria o design de cada postagem do ListView individualmente
     return (
-      <TouchableHighlight onPress={
-        () => {  this.props.postagemSelecionada(this.props.postagens), Actions.postagemDetalhes({ title: this.props.postagens.title.$t }) }
-      } underlayColor='rgba(190, 42, 68, 0.1)' style={{margin: 4, flex: 1}}>
+      <TouchableHighlight 
+        onPress={
+          () => {  
+            this.props.postagemSelecionada(this.props.postagens), 
+            Actions.postagemDetalhes({ title: this.props.postagens.title.$t }) 
+          }
+        } underlayColor='rgba(190, 42, 68, 0.1)' style={styles.click}
+      >
 
         <View style={ styles.painelPrincipal }>
           <View style={ styles.imagemViewPost }>
@@ -34,12 +41,17 @@ class Postagens extends Component {
           </View>
         </View> 
       </TouchableHighlight>
+
     );
   }
 }
 
 const styles = StyleSheet.create({
-  
+
+  click: {
+    margin: 4, 
+    flex: 1
+  },
   painelPrincipal:{
     flex: 1, 
     backgroundColor: '#fff', 
@@ -84,6 +96,12 @@ const styles = StyleSheet.create({
 
 });
 
-mapStateToProps = state => { return({}) }
+mapStateToProps = state => { 
+  return({ }) 
+}
 
-export default connect(mapStateToProps, { postagemSelecionada })(Postagens);
+mapDispatch = {
+  postagemSelecionada
+}
+
+export default connect(mapStateToProps, mapDispatch)(Postagens);
