@@ -14,9 +14,10 @@ export const postagemSelecionada = (data) => {
 export const postsSearchCatch = (text) => {
 
 		return dispatch => {
-		//Recebe as Tags do Blog
-			axios.get(`http://unisystem51.blogspot.com/feeds/posts/default/?alt=json&start-index=1&max-results=99999&q=${text}`)
+		//Recebe a Pesquisa do Blog
+			axios.get(`http://unisystem51.blogspot.com/feeds/posts/default/?alt=json&q=${text}`)
 	      	.then((response) => {
+				  console.log(response.data.feed.entry);
 				dispatch({
 					type: POSTS_SEARCH,
 					payload: response.data.feed.entry

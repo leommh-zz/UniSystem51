@@ -1,12 +1,9 @@
 //Importações Globais
 import React, { Component } from 'react';
-import { View, StatusBar, Animated } from 'react-native';
-import { connect } from 'react-redux';
+import { View, StatusBar, Animated, StyleSheet } from 'react-native';
 
 //Importações Personalizadas...
-import ListaPostagens from './ListaPostagens';
 import TabBarMenu from './TabBarMenu';
-
 
 export default class Inicio extends Component {
   
@@ -37,24 +34,31 @@ export default class Inicio extends Component {
       inputRange: [0, 100, 200, 300, 400, 500, 600],
       outputRange: [ '#ea4761', '#ff6c6a', '#ff6e6a', '#ff856c', '#ff966d', '#ff9e6e', '#ffa76f']
     });
-
     
     const animatedStyle = {
       color: interpolateColor,
       padding: 8, fontSize: 25, textAlign: 'center', fontFamily: 'Montserrat'
     }
 
-    
-      return (
-        <View style={{ flex: 1, backgroundColor: '#fff' }}>
-          <StatusBar backgroundColor="#7c0037" />
-          <View style={{backgroundColor: '#8c003f' }}>
-            <Animated.Text style={  animatedStyle }>Uni System 51</Animated.Text>
-          </View>
-          <TabBarMenu />
+    return (
+      <View style={ styles.fundo }>
+        <StatusBar backgroundColor="#7c0037" />
+        <View style={ styles.fundoLogo }>
+          <Animated.Text style={ animatedStyle }> Uni System 51 </Animated.Text>
         </View>
-      );
+        <TabBarMenu />
+      </View>
+    );
   }
   
 }
 
+const styles = StyleSheet.create({
+  fundo: {
+    flex: 1, 
+    backgroundColor: '#fff'
+  },
+  fundoLogo: {
+    backgroundColor: '#8c003f'
+  }
+});

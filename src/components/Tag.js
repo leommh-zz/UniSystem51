@@ -1,11 +1,7 @@
 //Importações Globais
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableHighlight, ActivityIndicator } from 'react-native';
-import { connect } from 'react-redux';
+import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-
-//Importações Personalizadas
-import { postsTagCatch } from '../actions/PostagemActions';
 
 export default class Tag extends Component {
 
@@ -13,18 +9,12 @@ export default class Tag extends Component {
     this.tag = this.props.tag.term; 
   }
 
-
   render() {
+
     return (
       <TouchableHighlight 
-        onPress={ () => {
-            //Recebe o JSON do blogger contendo o conteúdo personalizado de acordo com a tag selecionada
-    
-            Actions.tagDetalhes({
-              title: this.tag, 'tag': this.tag
-            }) 
-                
-		      }
+        //Recebe o JSON do blogger contendo o conteúdo personalizado de acordo com a tag selecionada
+        onPress={ () => { Actions.tagDetalhes({ title: this.tag, 'tag': this.tag }) }
       	} underlayColor='rgba(190, 42, 68, 0.1)' style={{ margin: 4 }}>
 
 	        <View style={ Styles.painelPrincipal }>
@@ -34,6 +24,7 @@ export default class Tag extends Component {
     	</TouchableHighlight>
     );
   }
+
 }
 
 const Styles = StyleSheet.create({

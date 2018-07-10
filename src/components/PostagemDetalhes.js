@@ -6,8 +6,6 @@ import HTMLView from 'react-native-htmlview';
 
 class PostagemDetalhes extends Component {
   
-
-
   render() {
       //Função que verifica e substituis certas características do HTML recebido
     renderNode = (node) => {
@@ -17,11 +15,9 @@ class PostagemDetalhes extends Component {
       }
     
     }
-    
-    //console.log(this.props);
-
 
     if (this.props.postagemAtual !== undefined){
+      
       this.conteudo = this.props.postagemAtual.content.$t;
 
       return(
@@ -45,13 +41,11 @@ class PostagemDetalhes extends Component {
         );
       }
 
-
     }
 }
 
 //Parâmetros de largura e altura
 const width = Dimensions.get('screen').width * PixelRatio.get();
-const height = Dimensions.get('screen').height;
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -63,7 +57,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontWeight: '300',
-    color: '#ff6c6a', // make links coloured pink
+    color: '#ff6c6a',
   },
   imagem: {
     margin: 2, 
@@ -78,4 +72,6 @@ mapStateToProps = state => {
     });
 }
 
-export default connect(mapStateToProps, { })(PostagemDetalhes);
+mapDispatch = {}
+
+export default connect(mapStateToProps, mapDispatch)(PostagemDetalhes);

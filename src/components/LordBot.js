@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import { ThemeProvider } from 'styled-components';
+import { View } from 'react-native';
 import ChatBot from 'react-native-chatbot';
 
 //Importações Personalizadas
